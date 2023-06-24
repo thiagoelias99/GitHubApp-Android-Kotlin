@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "git_hub_users")
-class GitHubUser(
+data class GitHubUser(
     @PrimaryKey val login: String,
     val avatar: String,
     @ColumnInfo(name = "api_url") val apiUrl: String,
