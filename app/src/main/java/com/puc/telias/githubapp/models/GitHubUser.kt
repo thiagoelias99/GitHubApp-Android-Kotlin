@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "git_hub_users")
 class GitHubUser(
     @PrimaryKey val login: String,
     val avatar: String,

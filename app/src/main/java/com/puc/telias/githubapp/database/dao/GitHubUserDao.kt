@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.puc.telias.githubapp.models.GitHubUser
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface GitHubUserDao {
@@ -15,5 +16,6 @@ interface GitHubUserDao {
     @Delete
     suspend fun destroy(user: GitHubUser)
 
-    //@Query()
+    @Query("""SELECT * FROM git_hub_users""")
+    fun getAll(): Flow<List<GitHubUser>>
 }

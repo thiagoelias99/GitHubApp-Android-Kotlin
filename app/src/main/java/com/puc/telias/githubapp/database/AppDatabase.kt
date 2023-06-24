@@ -12,14 +12,17 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun gitHubUserDao(): GitHubUserDao
 
     companion object {
+        @Volatile private var db: AppDatabase? = null
         fun getConnection(context: Context): AppDatabase {
-            return Room.databaseBuilder(
+            return db ?: Room.databaseBuilder(
                 context,
                 AppDatabase::class.java,
                 "weatherapp.db"
             )
                 .allowMainThreadQueries()
-                .build()
+                .build().also {
+                    db = it
+                }
         }
     }
 }
