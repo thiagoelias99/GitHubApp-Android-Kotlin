@@ -1,11 +1,16 @@
 package com.puc.telias.githubapp.models
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 class GitHubUser(
-    val login: String,
+    @PrimaryKey val login: String,
     val avatar: String,
-    val apiUrl: String,
-    val htmlUrl: String,
-    val reposUrl: String,
+    @ColumnInfo(name = "api_url") val apiUrl: String,
+    @ColumnInfo(name = "html_url")val htmlUrl: String,
+    @ColumnInfo(name = "repos_url")val reposUrl: String,
     val name: String,
     val company: String,
     val location: String,
@@ -14,5 +19,5 @@ class GitHubUser(
     val follower: Int,
     val following: Int
 ) {
-    
+
 }
