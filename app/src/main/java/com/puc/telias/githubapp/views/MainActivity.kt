@@ -42,8 +42,11 @@ class MainActivity : AppCompatActivity() {
             val alertDialog = AlertDialog.Builder(this)
                 .setView(addGitHubUserDialogBinding.root)
                 .setPositiveButton("Confirmar") { _, _ ->
-
-
+                    lifecycleScope.launch {
+                        user?.let {user ->
+                            repository.addAdd(user)
+                        }
+                    }
                 }
                 .setNegativeButton("Cancelar") { _, _ ->
 
@@ -55,6 +58,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             addGitHubUserDialogBinding.addGitHubUserDialogButton.setOnClickListener {
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = false
                 lifecycleScope.launch {
                     userLogin = addGitHubUserDialogBinding.addGitHubUserDialogSearch.text.toString()
                     user = repository.getUserByLogin(userLogin)
@@ -72,8 +76,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launch {
-//            val user = webClient.getGitHubUserByLogin("thiagoelias99")
-//            Log.i(TAG, "GitHub User: $user.")
             repeatOnLifecycle(Lifecycle.State.STARTED) {
 
             }

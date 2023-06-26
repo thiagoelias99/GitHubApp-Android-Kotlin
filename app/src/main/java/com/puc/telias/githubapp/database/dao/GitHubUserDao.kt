@@ -18,4 +18,7 @@ interface GitHubUserDao {
 
     @Query("""SELECT * FROM git_hub_users""")
     fun getAll(): Flow<List<GitHubUser>>
+
+    @Query("""SELECT * FROM git_hub_users WHERE login = :login""")
+    suspend fun getByLogin(login: String): GitHubUser?
 }

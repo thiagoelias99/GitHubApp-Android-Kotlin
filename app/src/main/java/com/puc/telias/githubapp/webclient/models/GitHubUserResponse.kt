@@ -21,7 +21,7 @@ class GitHubUserResponse(
     ) {
     val gitHubUser: GitHubUser?
         get() = GitHubUser(
-            login ?: "",
+            login = login?.toLowerCase() ?: "",
             avatar = avatar_url ?: "",
             apiUrl = url ?: "",
             htmlUrl = html_url ?: "",
